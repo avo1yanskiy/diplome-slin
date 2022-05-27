@@ -26,3 +26,20 @@ git clone https://github.com/avo1yanskiy/diplome-slin.git
 sudo unzip dist/terraform_1.2.1_linux_amd64.zip
 
 cp terraform /bin
+
+
+
+
+nano ~/.terraformrc
+
+```
+provider_installation {
+  network_mirror {
+    url = "https://terraform-mirror.yandexcloud.net/"
+    include = ["registry.terraform.io/*/*"]
+  }
+  direct {
+    exclude = ["registry.terraform.io/*/*"]
+  }
+}
+```
