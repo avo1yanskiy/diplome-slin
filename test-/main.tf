@@ -82,6 +82,29 @@ resource "yandex_compute_instance" "vm-3" {
   }
 }
 
+resource "yandex_compute_instance" "vm-4" {
+  name = "http-1"
+
+  resources {
+    cores  = 2
+    memory = 4
+  }
+
+  boot_disk {
+    initialize_params {
+      image_id = "fd87kbts7j40q5b9rpjr"
+    }
+  }
+
+  network_interface {
+    subnet_id = yandex_vpc_subnet.subnet-1.id
+    nat       = true
+  }
+
+  metadata = {
+    user-data = "${file("./meta.txt")}"
+  }
+}
 resource "yandex_vpc_network" "network1" {
   name = "backnetwork"
 }
