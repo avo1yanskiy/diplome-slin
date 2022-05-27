@@ -57,7 +57,7 @@ resource "yandex_compute_instance" "vm-2" {
     nat       = true
   }
 
-resource "yandex_compute_instance" "vm-2" {
+resource "yandex_compute_instance" "vm-3" {
   name = "prometheus"
 
   resources {
