@@ -112,7 +112,6 @@ scale_policy {
 
   allocation_policy {
     zones = ["ru-central1-a"]
-    zones = ["ru-central1-b"]
   }
 
   deploy_policy {
