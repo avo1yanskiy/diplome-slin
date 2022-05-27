@@ -193,7 +193,7 @@ resource "yandex_lb_network_load_balancer" "foo" {
   name = "my-network-load-balancer"
 
   listener {
-    name = "ngixn"
+    name = "nginx"
     port = 80
     external_address_spec {
       ip_version = "ipv4"
