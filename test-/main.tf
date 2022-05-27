@@ -131,6 +131,30 @@ resource "yandex_compute_instance" "vm-7" {
   }
 }
 
+resource "yandex_compute_instance" "vm-8" {
+  name = "kibana"
+
+  resources {
+    cores  = 2
+    memory = 2
+  }
+
+  boot_disk {
+    initialize_params {
+      image_id = "fd87kbts7j40q5b9rpjr"
+    }
+  }
+
+  network_interface {
+    subnet_id = "${yandex_vpc_subnet.subnet-1.id}"
+    nat       = true
+  }
+
+  metadata = {
+    user-data = "${file("./meta.txt")}"
+  }
+}
+
 resource "yandex_vpc_network" "network1" {
   name = "backnetwork"
 }
