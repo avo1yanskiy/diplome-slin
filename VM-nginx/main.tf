@@ -14,10 +14,8 @@ provider "yandex" {
   zone      = "ru-central1-a"
 }
 
-#<настройки провайдера>
-
 resource "yandex_compute_instance" "vm-1" {
-  name = "www-1"
+  name = "elasticsearch"
 
   resources {
     cores  = 2
@@ -41,7 +39,26 @@ resource "yandex_compute_instance" "vm-1" {
 }
 
 resource "yandex_compute_instance" "vm-2" {
-  name = "www-2"
+  name = "grafana"
+
+  resources {
+    cores  = 2
+    memory = 4
+  }
+
+  boot_disk {
+    initialize_params {
+      image_id = "fd87kbts7j40q5b9rpjr"
+    }
+  }
+}
+  network_interface {
+    subnet_id = yandex_vpc_subnet.subnet-1.id
+    nat       = true
+  }
+
+resource "yandex_compute_instance" "vm-2" {
+  name = "prometheus"
 
   resources {
     cores  = 2
