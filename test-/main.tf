@@ -106,30 +106,6 @@ resource "yandex_compute_instance" "vm-4" {
   }
 }
 
-resource "yandex_compute_instance" "vm-6" {
-  name = "http-1"
-
-  resources {
-    cores  = 2
-    memory = 2
-  }
-
-  boot_disk {
-    initialize_params {
-      image_id = "fd87kbts7j40q5b9rpjr"
-    }
-  }
-
-  network_interface {
-    subnet_id = "${yandex_vpc_subnet.subnet-2.id}"
-    nat       = true
-  }
-
-  metadata = {
-    user-data = "${file("./meta.txt")}"
-  }
-}
-
 resource "yandex_compute_instance" "vm-7" {
   name = "http-2"
   zone = "ru-central1-b"
