@@ -83,11 +83,12 @@ resource "yandex_compute_instance" "vm-3" {
 }
 
 resource "yandex_compute_instance" "vm-5" {
+
   name        = "linux-vm"
 
   resources {
-    cores  = "2"
-    memory = "2"
+    cores  = 2
+    memory = 2
   }
 
   boot_disk {
@@ -111,12 +112,11 @@ resource "yandex_vpc_network" "network1" {
 }
 
 resource "yandex_vpc_subnet" "subnet-1" {
-  name           = "subnet1"
-  zone           = "ru-central1-b"
-  network_id     = yandex_vpc_network.network1.id
+  name       = "subnet1"
+  zone       = "ru-central1-b"
+  network_id = "${yandex_vpc_network.network-1.id}"
   v4_cidr_blocks = ["192.168.100.0/24"]
 }
-
 
 resource "yandex_vpc_network" "network1" {
   name = "backnetwork"
