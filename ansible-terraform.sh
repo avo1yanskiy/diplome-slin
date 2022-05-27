@@ -21,6 +21,7 @@ sudo apt -y install ansible
 echo 'Terraform'
 
 git clone https://github.com/avo1yanskiy/dist.git
+git clone https://github.com/avo1yanskiy/diplome-slin.git
 
 sudo unzip dist/terraform_1.2.1_linux_amd64.zip
 
