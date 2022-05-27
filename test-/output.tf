@@ -18,6 +18,10 @@ output "internal_ip_address_vm_6" {
   value = yandex_compute_instance.vm-6.network_interface.0.ip_address
 }
 
+output "internal_ip_address_vm_7" {
+  value = yandex_compute_instance.vm-7.network_interface.0.ip_address
+}
+
 output "external_ip_address_vm_1" {
   value = yandex_compute_instance.vm-1.network_interface.0.nat_ip_address
 }
@@ -36,4 +40,8 @@ output "external_ip_address_vm_4" {
 
 output "external_ip_address_vm_6" {
   value = yandex_compute_instance.vm-6.network_interface.0.nat_ip_address
+}
+
+output "external_ip_address_vm_7" {
+  value = yandex_compute_instance.vm-7.network_interface.0.nat_ip_address
 }
