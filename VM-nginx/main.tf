@@ -81,8 +81,6 @@ resource "yandex_compute_instance_group" "ig-1" {
   name               = "fixed-ig-with-balancer"
   folder_id          = "<идентификатор каталога>"
   service_account_id = "${yandex_iam_service_account.main.id}"
-  instance_template {
-    platform_id = "standard-v3"
     resources {
       memory = "2"
       cores  = "2"
