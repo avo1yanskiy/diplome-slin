@@ -132,7 +132,7 @@ resource "yandex_compute_instance" "vm-7" {
 }
 
 resource "yandex_vpc_network" "network1" {
-  name = "backnetwork-2"
+  name = "backnetwork"
 }
 
 resource "yandex_vpc_subnet" "subnet-2" {
@@ -141,9 +141,6 @@ resource "yandex_vpc_subnet" "subnet-2" {
   network_id = yandex_vpc_network.network1.id
   v4_cidr_blocks = ["192.168.100.0/24"]
 
-}
-resource "yandex_vpc_network" "network2" {
-  name = "backnetwork-1"
 }
 
 resource "yandex_vpc_subnet" "subnet-1" {
