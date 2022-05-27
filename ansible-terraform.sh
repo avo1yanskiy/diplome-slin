@@ -25,4 +25,3 @@ git clone https://github.com/avo1yanskiy/dist.git
 sudo unzip dist/terraform_1.2.1_linux_amd64.zip
 
 cp terraform /bin
-terraform version
