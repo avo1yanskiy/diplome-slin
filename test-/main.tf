@@ -19,7 +19,7 @@ resource "yandex_compute_instance" "vm-1" {
 
   resources {
     cores  = 2
-    memory = 4
+    memory = 2
   }
 
   boot_disk {
@@ -43,7 +43,7 @@ resource "yandex_compute_instance" "vm-2" {
 
   resources {
     cores  = 2
-    memory = 4
+    memory = 2
   }
 
   boot_disk {
@@ -63,7 +63,7 @@ resource "yandex_compute_instance" "vm-3" {
 
   resources {
     cores  = 2
-    memory = 4
+    memory = 2
   }
 
   boot_disk {
@@ -87,7 +87,7 @@ resource "yandex_compute_instance" "vm-4" {
 
   resources {
     cores  = 2
-    memory = 4
+    memory = 2
   }
 
   boot_disk {
