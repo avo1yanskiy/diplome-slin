@@ -51,11 +51,12 @@ resource "yandex_compute_instance" "vm-2" {
       image_id = "fd87kbts7j40q5b9rpjr"
     }
   }
-}
+
   network_interface {
     subnet_id = yandex_vpc_subnet.subnet-1.id
     nat       = true
   }
+}
 
 resource "yandex_compute_instance" "vm-3" {
   name = "prometheus"
