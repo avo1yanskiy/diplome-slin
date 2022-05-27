@@ -64,8 +64,8 @@ resource "yandex_compute_instance" "vm-2" {
   }
 }
 
-resource "yandex_iam_service_account" "ajedk67l8alavjag7t31" {
-  name        = "ig-sa"
+resource "yandex_iam_service_account" "main" {
+  name        = "main"
   description = "service account"
 }
 
@@ -73,14 +73,14 @@ resource "yandex_resourcemanager_folder_iam_binding" "editor" {
   folder_id = "b1guvngenjnqosl63v2v"
   role      = "editor"
   members   = [
-    "serviceAccount:${yandex_iam_service_account.ig-sa.id}",
+    "serviceAccount:${yandex_iam_service_account.main.id}",
   ]
 }
 
 resource "yandex_compute_instance_group" "ig-1" {
   name               = "fixed-ig-with-balancer"
   folder_id          = "<идентификатор каталога>"
-  service_account_id = "${yandex_iam_service_account.ig-sa.id}"
+  service_account_id = "${yandex_iam_service_account.main.id}"
   instance_template {
     platform_id = "standard-v3"
     resources {
