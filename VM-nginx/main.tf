@@ -14,12 +14,10 @@ provider "yandex" {
   zone      = "ru-central1-a"
 }
 
-
-
 #<настройки провайдера>
 
 resource "yandex_compute_instance" "vm-1" {
-  name = "node-1"
+  name = "www-1"
 
   resources {
     cores  = 2
@@ -43,7 +41,7 @@ resource "yandex_compute_instance" "vm-1" {
 }
 
 resource "yandex_compute_instance" "vm-2" {
-  name = "node-2"
+  name = "www-2"
 
   resources {
     cores  = 2
@@ -63,6 +61,68 @@ resource "yandex_compute_instance" "vm-2" {
 
   metadata = {
     user-data = "${file("./meta.txt")}"
+  }
+}
+
+resource "yandex_iam_service_account" "ajedk67l8alavjag7t31" {
+  name        = "ig-sa"
+  description = "service account"
+}
+
+resource "yandex_resourcemanager_folder_iam_binding" "editor" {
+  folder_id = "b1guvngenjnqosl63v2v"
+  role      = "editor"
+  members   = [
+    "serviceAccount:${yandex_iam_service_account.ig-sa.id}",
+  ]
+}
+
+resource "yandex_compute_instance_group" "ig-1" {
+  name               = "fixed-ig-with-balancer"
+  folder_id          = "<идентификатор каталога>"
+  service_account_id = "${yandex_iam_service_account.ig-sa.id}"
+  instance_template {
+    platform_id = "standard-v3"
+    resources {
+      memory = "2"
+      cores  = "2"
+    }
+  }
+    boot_disk {
+      mode = "READ_WRITE"
+      initialize_params {
+        image_id = "fd87kbts7j40q5b9rpjr"
+      }
+    }
+
+    network_interface {
+      network_id = "${yandex_vpc_network.network1.id}"
+      subnet_ids = ["${yandex_vpc_subnet.subnet-1.id}"]
+    }
+
+metadata = {
+    user-data = "${file("./meta.txt")}"
+  }
+
+scale_policy {
+    fixed_scale {
+      size = "2"
+    }
+  }
+
+  allocation_policy {
+    zones = ["ru-central1-a"]
+    zones = ["ru-central1-b"]
+  }
+
+  deploy_policy {
+    max_unavailable = 1
+    max_expansion   = 0
+  }
+
+  load_balancer {
+    target_group_name        = "target-group"
+    target_group_description = "load balancer target group"
   }
 }
 
