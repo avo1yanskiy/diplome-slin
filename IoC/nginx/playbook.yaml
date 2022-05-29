@@ -1,0 +1,22 @@
+- name: ALL  
+  hosts: prod
+  tasks:
+    - name: Show fact
+      debug:
+        msg: "{{ ansible_processor }}"
+    - debug:
+        msg: "{{ ansible_default_ipv4.address }}"
+    - debug:  
+        msg: "{{ ansible_userspace_architecture }}"
+    - debug:  
+        msg: "{{ ansible_devices.vda.partitions.vda2.size}}"
+    - debug:  
+        msg: "{{ ansible_hostname }}"
+
+    - set_fact: full_message= "{{ ansible_processor }} {{ ansible_default_ipv4.address }} {{ ansible_userspace_architecture }}{{ ansible_devices.vda.partitions.vda2}} {{ ansible_hostname }}"
+  
+    - name: Copy ansible facts to a file.
+      copy:
+        content: "{{ ansible_processor }} {{ ansible_default_ipv4.address }} {{ ansible_userspace_architecture }}{{ ansible_devices.vda.partitions.vda2}} {{ ansible_hostname }}"
+        dest: /tmp/index1.html
+

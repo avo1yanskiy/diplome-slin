@@ -1,0 +1,5 @@
+---
+- name: Install Apache
+  hosts: prod
+  roles:
+    - apache
