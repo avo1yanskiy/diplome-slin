@@ -1,0 +1,9 @@
+---
+- name: Enable EPEL Repository
+  hosts: prod
+  tasks:
+  - name: Install nginx
+    yum:
+      name: nginx
+  
+      
