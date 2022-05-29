@@ -1,0 +1,20 @@
+---
+- name: Check & Gathering Facts
+  hosts: prod
+  tasks:
+    - name: Copy-grafana.repo
+      become: yes
+      ansible.builtin.copy:
+       src: grafana.repo
+       dest: /etc/yum.repos.d/
+    - name: Install Grafana
+      become: yes
+      yum:
+        name: grafana
+        state: latest
+    - name: grafana serives restart
+      become: yes
+      ansible.builtin.service:
+        name: grafana-server
+        state: started
+        enabled: yes
