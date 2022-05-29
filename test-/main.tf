@@ -58,6 +58,10 @@ resource "yandex_compute_instance" "vm-2" {
     subnet_id = yandex_vpc_subnet.subnet-1.id
     nat       = true
   }
+
+metadata = {
+    user-data = "${file("./meta.txt")}"
+  }
 }
 
 resource "yandex_compute_instance" "vm-3" {
