@@ -16,6 +16,7 @@ provider "yandex" {
 
 resource "yandex_compute_instance" "vm-1" {
   name = "elasticsearch"
+  zone = "ru-central1-a"
 
   resources {
     cores  = 2
@@ -40,6 +41,7 @@ resource "yandex_compute_instance" "vm-1" {
 
 resource "yandex_compute_instance" "vm-2" {
   name = "grafana"
+  zone = "ru-central1-a"
 
   resources {
     cores  = 2
@@ -60,6 +62,7 @@ resource "yandex_compute_instance" "vm-2" {
 
 resource "yandex_compute_instance" "vm-3" {
   name = "prometheus"
+  zone = "ru-central1-a"
 
   resources {
     cores  = 2
@@ -84,7 +87,7 @@ resource "yandex_compute_instance" "vm-3" {
 
 resource "yandex_compute_instance" "vm-4" {
   name = "http-1"
-
+  zone = "ru-central1-a"
   resources {
     cores  = 2
     memory = 2
