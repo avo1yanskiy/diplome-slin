@@ -1,0 +1,111 @@
+### Prinetheus
+---
+- name: Check & Gathering Facts
+  hosts: prod
+  tasks:
+    - name: Download Promethtus
+      get_url:
+        url: https://github.com/prometheus/prometheus/releases/download/v2.30.3/prometheus-2.30.3.linux-amd64.tar.gz
+        dest: /tmp/prometheus-2.30.3.linux-amd64.tar.gz
+
+    - name: Unarchive Prometheus
+      ansible.builtin.unarchive:
+        src: /tmp/prometheus-2.30.3.linux-amd64.tar.gz
+        dest: /tmp
+        remote_src: yes
+
+    - name: Prometheus User
+      become: yes
+      ansible.builtin.user:
+       name: prome
+       comment: prometheus
+
+    - name: Create Prometheus Directories
+      become: yes
+      ansible.builtin.file:
+       state: directory
+       path: /etc/prometheus
+
+    - name: Change file ownership, group and permissions
+      become: yes
+      ansible.builtin.file:
+       state: directory
+       path: /var/lib/prometheus
+       owner: prome
+       group: prome
+       mode: '777'
+
+    - name: Cory prometheus.yml
+      become: yes
+      ansible.builtin.copy:
+       src: prometheus.yml
+       dest: /etc/prometheus/prometheus.yml
+       owner: prome
+       group: prome
+       mode: '777'
+    - name: Copy consoles
+      become: yes
+      ansible.builtin.copy:
+       src: /tmp/prometheus-2.30.3.linux-amd64/consoles
+       dest: /etc/prometheus      
+       owner: prome
+       group: prome
+       mode: '777'
+       remote_src: yes
+
+    - name: Copy console_libraries
+      become: yes
+      ansible.builtin.copy:
+       src: /tmp/prometheus-2.30.3.linux-amd64/console_libraries
+       dest: /etc/prometheus      
+       owner: prome
+       group: prome
+       mode: '777'
+       remote_src: yes
+
+    - name: Copy promtool
+      become: yes
+      ansible.builtin.copy:
+       src: /tmp/prometheus-2.30.3.linux-amd64/promtool
+       dest: /usr/local/bin/     
+       owner: prome
+       group: prome
+       mode: '777'
+       remote_src: yes
+
+    - name: Copy prometheus
+      become: yes
+      ansible.builtin.copy:
+       src: /tmp/prometheus-2.30.3.linux-amd64/prometheus
+       dest: /usr/local/bin/
+       owner: prome
+       group: prome
+       mode: '777'
+       remote_src: yes
+
+    - name: Copy prometheus.service
+      become: yes
+      ansible.builtin.copy:
+       src: prometheus.service
+       dest: /etc/systemd/system/
+       
+    - name: Copy node_exporter.service
+      become: yes
+      ansible.builtin.copy:
+       src: node_exporter.service
+       dest: /etc/systemd/system/   
+
+    - name: Restart service cron on centos
+      become: yes
+      ansible.builtin.systemd:
+        daemon_reload: yes
+
+    - name: prometheus serives restart
+      become: yes
+      ansible.builtin.service:
+        name: prometheus
+        state: restarted
+        enabled: yes
+
+
+       

@@ -1,0 +1,56 @@
+###   Скачивает и установливает Node_Exporter
+---
+- name: Check & Gathering Facts
+  hosts: client
+  tasks:
+    - name: Create Users Node_exporter
+      become: yes
+      ansible.builtin.user:
+       name: node_exporter
+       comment: node_exporter
+
+    - name: Download node_exporter
+      get_url:
+        url: https://github.com/prometheus/node_exporter/releases/download/v1.2.2/node_exporter-1.2.2.linux-amd64.tar.gz
+        dest: /tmp/node_exporter-1.2.2.linux-amd64.tar.gz
+
+    - name: Unarchive Prometheus
+      ansible.builtin.unarchive:
+        src: /tmp/node_exporter-1.2.2.linux-amd64.tar.gz
+        dest: /tmp
+        remote_src: yes
+
+    - name: Copy-4
+      become: yes
+      ansible.builtin.copy:
+       src: /tmp/node_exporter-1.2.2.linux-amd64/node_exporter
+       dest: /usr/local/bin/
+       owner: node_exporter
+       group: node_exporter
+       mode: '777'
+       remote_src: yes
+
+    - name: Copy-6
+      become: yes
+      ansible.builtin.copy:
+       src: node_exporter.service
+       dest: /etc/systemd/system/
+
+- name: Start Service
+  hosts: client
+  tasks:
+    - name: Restart service
+      become: yes
+      ansible.builtin.systemd:
+        daemon_reload: yes
+    - name: node_exporter serives start
+      become: yes
+      ansible.builtin.service:
+        name: node_exporter
+        state: started
+        enabled: yes
+#    - name: prometheus serives start
+#      become: yes
+#      ansible.builtin.service:
+#        name: prometheus
+#        state: restarted

@@ -3,7 +3,15 @@
   hosts: prod
   tasks:
   - name: Install nginx
+    become: yes
     yum:
       name: nginx
+      state: installed
+  - name: Service Up
+    become: yes
+    service:
+      name: nginx
+      state: started
+  
   
       
