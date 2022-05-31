@@ -193,12 +193,12 @@ resource "yandex_lb_target_group" "foo" {
 
   target {
     subnet_id = "${yandex_vpc_subnet.subnet-2.id}"
-    address   = "${yandex_compute_instance.vm-7.network_interface.0.ip_address}"
+    address   = "${yandex_compute_instance.virtual-machine-4.network_interface.0.ip_address}"
   }
 
   target {
     subnet_id = "${yandex_vpc_subnet.subnet-1.id}"
-    address   = "${yandex_compute_instance.vm-4.network_interface.0.ip_address}"
+    address   = "${yandex_compute_instance.virtual-machine-5.network_interface.0.ip_address}"
   }
 }
 
