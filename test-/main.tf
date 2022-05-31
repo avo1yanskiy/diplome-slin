@@ -40,7 +40,7 @@ resource "yandex_compute_instance" "virtual-machine-1" {
   }
 }
 
-resource "yandex_compute_instance" "vm-2" {
+resource "yandex_compute_instance" "virtual-machine-2" {
   name = "grafana"
   zone = "ru-central1-a"
 
@@ -66,7 +66,7 @@ metadata = {
   }
 }
 
-resource "yandex_compute_instance" "vm-3" {
+resource "yandex_compute_instance" "virtual-machine-3" {
   name = "prometheus"
   zone = "ru-central1-a"
 
@@ -92,7 +92,7 @@ resource "yandex_compute_instance" "vm-3" {
   }
 }
 
-resource "yandex_compute_instance" "vm-4" {
+resource "yandex_compute_instance" "virtual-machine-4" {
   name = "http-1"
   zone = "ru-central1-a"
   resources {
@@ -117,7 +117,7 @@ resource "yandex_compute_instance" "vm-4" {
   }
 }
 
-resource "yandex_compute_instance" "vm-7" {
+resource "yandex_compute_instance" "virtual-machine-5" {
   name = "http-2"
   zone = "ru-central1-b"
 
@@ -143,7 +143,7 @@ resource "yandex_compute_instance" "vm-7" {
   }
 }
 
-resource "yandex_compute_instance" "vm-8" {
+resource "yandex_compute_instance" "virtual-machine-6" {
   name = "kibana"
 
   resources {
