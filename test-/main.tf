@@ -15,7 +15,7 @@ provider "yandex" {
 }
 
 resource "yandex_compute_instance" "vm-1" {
-  name = elasticsearch
+  name = "elasticsearch"
   zone = "ru-central1-a"
 
   resources {
