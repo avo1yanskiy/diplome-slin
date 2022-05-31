@@ -40,6 +40,28 @@ resource "yandex_compute_instance" "virtual-machine-1" {
   }
 }
 
+resource "yandex_vpc_security_group" "test-sg" {
+  name        = "Test security group"
+  description = "Description for security group"
+  network_id  = yandex_vpc_subnet.subnet-1.id
+  network_id  = yandex_vpc_subnet.subnet-2.id
+
+  ingress {
+    protocol       = "TCP"
+    description    = "Rule description 1"
+    v4_cidr_blocks = ["192.168.101.0/24", "192.168.100.0/24"]
+    port           = 22
+  }
+
+  egress {
+    protocol       = "ANY"
+    description    = "Rule description 2"
+    v4_cidr_blocks = ["192.168.101.0/24", "192.168.100.0/24"]
+    from_port      = 22
+    to_port        = 22
+  }
+}
+
 resource "yandex_compute_instance" "virtual-machine-2" {
   name = "grafana"
   zone = "ru-central1-a"
