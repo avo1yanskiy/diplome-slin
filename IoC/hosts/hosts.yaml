@@ -11,29 +11,42 @@
   hosts: srv
   tasks:
     - name: Set a hostname http-1
-      ansible.builtin.hostname:
-        name: http-1
+      become: yes
+      ansible.builtin.shell: echo 'http-1' > /etc/hostname
 - name: Set a hostname http-2
   hosts: srv1
   tasks:
     - name: Set a hostname http-2
-      ansible.builtin.hostname:
-        name: http-2
-- name: Set a hostname prometheus
+      become: yes
+      ansible.builtin.shell: echo 'http-2' > /etc/hostname
+- name: Set a hostname grafana
   hosts: srv2
   tasks:
-    - name: Set a hostname prometheus
-      ansible.builtin.hostname:
-        name: prometheus
-- name: Set a hostname kibana
+    - name: Set a hostname grafana
+      become: yes
+      ansible.builtin.shell: echo 'grafana' > /etc/hostname
+- name: Set a hostname prometheus
   hosts: srv3
   tasks:
-    - name: Set a hostname kibana
-      ansible.builtin.hostname:
-        name: kibana
-- name: Set a hostname elasticsearch
+    - name: Set a hostname prometheus
+      become: yes
+      ansible.builtin.shell: echo 'prometheus' > /etc/hostname
+- name: Set a hostname kibana
   hosts: srv4
   tasks:
+    - name: Set a hostname kibana
+      become: yes
+      ansible.builtin.shell: echo 'kibana' > /etc/hostname
+- name: Set a hostname elasticsearch
+  hosts: srv5
+  tasks:
     - name: Set a hostname elasticsearch
-      ansible.builtin.hostname:
-        name: elasticsearch
+      become: yes
+      ansible.builtin.shell: echo 'elasticsearch' > /etc/hostname
+- name: Reboot
+  hosts: prod
+  tasks:
+    - name: reboot
+      become: yes
+      reboot:
+  
