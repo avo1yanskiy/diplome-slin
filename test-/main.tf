@@ -231,20 +231,7 @@ resource "yandex_vpc_subnet" "subnet-1" {
   v4_cidr_blocks = ["192.168.101.0/24"]
 }
 
-resource "yandex_lb_target_group" "foo" {
-  name      = "my-target-group"
-  region_id = "ru-central1"
-
-  target {
-    subnet_id = "${yandex_vpc_subnet.subnet-2.id}"
-    address   = "${yandex_compute_instance.virtual-machine-5.network_interface.0.ip_address}"
-  }
-
-  target {
-    subnet_id = "${yandex_vpc_subnet.subnet-1.id}"
-    address   = "${yandex_compute_instance.virtual-machine-4.network_interface.0.ip_address}"
-  }
-}
+-### 
 
 resource "yandex_alb_target_group" "foo" {
   name           = "http-yandex"
