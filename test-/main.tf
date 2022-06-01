@@ -244,3 +244,26 @@ resource "yandex_alb_target_group" "foo" {
     ip_address   = "192.168.101.10"
   }
 }
+
+resource "yandex_alb_backend_group" "test-backend-group" {
+  name                     = "test-backend-group"
+
+  http_backend {
+    name                   = "backend1"
+    weight                 = 1
+    port                   = 80
+    target_group_ids       = ["ds7432uuu6ufgj9qu9nf"]
+    load_balancing_config {
+      panic_threshold      = 90
+    }    
+    healthcheck {
+      timeout              = "10s"
+      interval             = "2s"
+      healthy_threshold    = 10
+      unhealthy_threshold  = 15 
+      http_healthcheck {
+        path               = "/"
+      }
+    }
+  }
+}
