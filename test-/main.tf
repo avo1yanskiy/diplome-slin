@@ -191,27 +191,6 @@ resource "yandex_compute_instance" "virtual-machine-7" {
   }
 }
 
-resource "yandex_vpc_security_group" "test" {
-  name        = "Test security"
-  description = "Description security group"
-  network_id  = yandex_vpc_network.network1.id
-
-  ingress {
-    protocol       = "TCP"
-    description    = "Rule description 1"
-    v4_cidr_blocks = ["192.168.101.0/24", "192.168.100.0/24"]
-    port           = 22
-  }
-
-  egress {
-    protocol       = "ANY"
-    description    = "Rule description 2"
-    v4_cidr_blocks = ["192.168.101.0/24", "192.168.100.0/24"]
-    from_port      = 22
-    to_port        = 22
-  }
-}
-
 resource "yandex_vpc_network" "network1" {
   name = "NETWORKBACK"
 }
