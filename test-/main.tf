@@ -213,7 +213,7 @@ resource "yandex_vpc_security_group" "test-sg" {
 }
 
 resource "yandex_vpc_network" "network1" {
-  name = "backnetwork"
+  name = "NETWORKBACK"
 }
 
 resource "yandex_vpc_subnet" "subnet-2" {
