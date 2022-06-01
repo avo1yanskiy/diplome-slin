@@ -292,12 +292,12 @@ resource "yandex_alb_virtual_host" "my-virtual-host" {
 
 resource "yandex_alb_load_balancer" "test-balancer" {
   name        = "my-load-balancer"
-  network_id  = "yandex_vpc_network.network1.id"
+  network_id  = yandex_vpc_network.network1.id
 
   allocation_policy {
     location {
       zone_id   = "ru-central1-a"
-      subnet_id = "yandex_vpc_subnet.subnet-1.id" 
+      subnet_id = yandex_vpc_subnet.subnet-1.id
     }
   }
 
@@ -312,7 +312,7 @@ resource "yandex_alb_load_balancer" "test-balancer" {
     }
     http {
       handler {
-        http_router_id = "yandex_alb_http_router.tf-router.id"
+        http_router_id = yandex_alb_http_router.tf-router.id
       }
     }
   }
