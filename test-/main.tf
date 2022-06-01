@@ -247,7 +247,7 @@ resource "yandex_lb_target_group" "foo" {
 }
 
 resource "yandex_alb_target_group" "foo" {
-  name           = "httpyandex"
+  name           = "http-yandex"
 
   target {
     subnet_id    = "${yandex_vpc_subnet.subnet-2.id}"
@@ -261,7 +261,7 @@ resource "yandex_alb_target_group" "foo" {
 }
 
 resource "yandex_alb_backend_group" "testbackendgroup" {
-  name                     = "httpbackend"
+  name                     = "htt-pbackend"
 
   http_backend {
     name                   = "HTTPS"
