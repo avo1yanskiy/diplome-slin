@@ -252,7 +252,7 @@ resource "yandex_alb_backend_group" "test-backend-group" {
     name                   = "backend1"
     weight                 = 1
     port                   = 80
-    target_group_ids       = ["ds7432uuu6ufgj9qu9nf"]
+    target_group_ids       = ["yandex_alb_backend_group.test-backend-group.id"]
     load_balancing_config {
       panic_threshold      = 90
     }    
