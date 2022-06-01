@@ -231,7 +231,7 @@ resource "yandex_vpc_subnet" "subnet-1" {
   v4_cidr_blocks = ["192.168.101.0/24"]
 }
 
-resource "yandex_alb_target_group" "foo" {
+resource "yandex_alb_target_group" "http-yandex" {
   name           = "http-yandex"
 
   target {
@@ -252,7 +252,7 @@ resource "yandex_alb_backend_group" "test-backend-group" {
     name                   = "backend1"
     weight                 = 1
     port                   = 80
-    target_group_ids       = "${yandex_alb_target_group.foo.id}"
+    target_group_ids       = ["yandex_alb_target_group.http-yandex.id"]
     load_balancing_config {
       panic_threshold      = 90
     }    
