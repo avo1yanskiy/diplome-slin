@@ -298,20 +298,20 @@ resource "yandex_alb_load_balancer" "test-balancer" {
 }
 
 resource "yandex_vpc_security_group" "test-sg" {
-  name        = "Test security group"
-  description = "Description for security group"
+  name        = "Security group"
+  description = "for security group"
   network_id  = yandex_vpc_network.network1.id
 
   ingress {
     protocol       = "TCP"
-    description    = "Rule description 1"
+    description    = "Rule 1"
     v4_cidr_blocks = ["192.168.100.0/24", "192.168.101.0/24"]
     port           = 22
   }
 
   egress {
     protocol       = "ANY"
-    description    = "Rule description 2"
+    description    = "Rule 2"
     v4_cidr_blocks = ["192.168.100.0/24", "192.168.101.0/24"]
     from_port      = 8090
     to_port        = 8099
