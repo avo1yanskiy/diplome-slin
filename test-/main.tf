@@ -231,8 +231,6 @@ resource "yandex_vpc_subnet" "subnet-1" {
   v4_cidr_blocks = ["192.168.101.0/24"]
 }
 
--### 
-
 resource "yandex_alb_target_group" "foo" {
   name           = "http-yandex"
 
