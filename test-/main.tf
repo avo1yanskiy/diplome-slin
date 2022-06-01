@@ -300,7 +300,7 @@ resource "yandex_alb_load_balancer" "test-balancer" {
 resource "yandex_vpc_security_group" "test-sg" {
   name        = "Test security group"
   description = "Description for security group"
-  network_id  = "yandex_vpc_network.network1.id"
+  network_id  = yandex_vpc_network.network1.id
 
   ingress {
     protocol       = "TCP"
