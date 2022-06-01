@@ -167,7 +167,7 @@ resource "yandex_compute_instance" "virtual-machine-6" {
 }
 
 resource "yandex_compute_instance" "virtual-machine-7" {
-  name = "Bastion"
+  name = "bastion"
 
   resources {
     cores  = 2
