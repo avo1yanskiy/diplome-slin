@@ -260,14 +260,14 @@ resource "yandex_alb_target_group" "foo" {
   }
 }
 
-resource "yandex_alb_backend_group" "testbackendgroup" {
-  name                     = "htt-pbackend"
+resource "yandex_alb_backend_group" "test-backend-group" {
+  name                     = "http-backend"
 
   http_backend {
     name                   = "HTTPS"
     weight                 = 1
     port                   = 80
-    target_group_ids       = ["httpyandex"]
+    target_group_ids       = ["http-yandex"]
     load_balancing_config {
       panic_threshold      = 90
     }    
@@ -298,7 +298,7 @@ resource "yandex_alb_virtual_host" "my-virtual-host" {
     name = "http-router-1"
     http_route {
       http_route_action {
-        backend_group_id = "httpbackend"
+        backend_group_id = "http-backend"
         timeout          = "3s"
       }
     }
