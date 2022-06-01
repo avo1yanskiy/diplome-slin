@@ -247,7 +247,7 @@ resource "yandex_lb_target_group" "foo" {
 }
 
 resource "yandex_alb_target_group" "foo" {
-  name           = "http_yandex_alb_target_group"
+  name           = "httpyandex"
 
   target {
     subnet_id    = "${yandex_vpc_subnet.subnet-2.id}"
@@ -261,13 +261,13 @@ resource "yandex_alb_target_group" "foo" {
 }
 
 resource "yandex_alb_backend_group" "test-backend-group" {
-  name                     = "http_backend_yandex_alb_backend_group"
+  name                     = "httpbackend"
 
   http_backend {
     name                   = "HTTPS"
     weight                 = 1
     port                   = 80
-    target_group_ids       = ["http_yandex_alb_target_group"]
+    target_group_ids       = ["httpyandex"]
     load_balancing_config {
       panic_threshold      = 90
     }    
@@ -283,7 +283,7 @@ resource "yandex_alb_backend_group" "test-backend-group" {
   }
 }
 
-resource "yandex_alb_http_router" "tfrouter" {
+resource "yandex_alb_http_router" "tf-router" {
   name   = "HTTProuter"
   labels = {
     tf-label    = "tf-label-value"
@@ -293,12 +293,12 @@ resource "yandex_alb_http_router" "tfrouter" {
 
 resource "yandex_alb_virtual_host" "my-virtual-host" {
   name           = "http-router"
-  http_router_id = "${yandex_alb_http_router.tfrouter.id}"
+  http_router_id = "${yandex_alb_http_router.tf-router.id}"
   route {
     name = "http-router-1"
     http_route {
       http_route_action {
-        backend_group_id = "http_backend_yandex_alb_backend_group"
+        backend_group_id = "httpbackend"
         timeout          = "3s"
       }
     }
@@ -327,7 +327,7 @@ resource "yandex_alb_load_balancer" "test-balancer" {
     }
     http {
       handler {
-        http_router_id = "${yandex_alb_http_router.tfrouter.id}"
+        http_router_id = "${yandex_alb_http_router.tf-router.id}"
       }
     }
   }
