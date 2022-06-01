@@ -291,7 +291,7 @@ resource "yandex_alb_virtual_host" "my-virtual-host" {
 }
 
 resource "yandex_alb_load_balancer" "test-balancer" {
-  name        = "L-7"
+  name        = "my-load-balancer"
   network_id  = "yandex_vpc_network.network1.id"
 
   allocation_policy {
@@ -308,7 +308,7 @@ resource "yandex_alb_load_balancer" "test-balancer" {
         external_ipv4_address {
         }
       }
-      ports = [ 9000 ]
+      ports = [ 80 ]
     }
     http {
       handler {
