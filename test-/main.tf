@@ -283,7 +283,7 @@ resource "yandex_alb_backend_group" "test-backend-group" {
   }
 }
 
-resource "yandex_alb_http_router" "tfrouter" {
+resource "yandex_alb_http_router" "tf-router" {
   name   = "HTTProuter"
   labels = {
     tf-label    = "tf-label-value"
