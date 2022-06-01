@@ -246,25 +246,88 @@ resource "yandex_lb_target_group" "foo" {
   }
 }
 
-resource "yandex_lb_network_load_balancer" "foo" {
-  name = "my-network-load-balancer"
+resource "yandex_alb_target_group" "foo" {
+  name           = "http_yandex_alb_target_group"
 
-  listener {
-    name = "nginx"
-    port = 80
-    external_address_spec {
-      ip_version = "ipv4"
+  target {
+    subnet_id    = "${yandex_vpc_subnet.subnet-2.id}"
+    ip_address   = "192.168.100.8"
+  }
+
+  target {
+    subnet_id    = "yandex_vpc_subnet.subnet-1.id"
+    ip_address   = "192.168.101.10"
+  }
+}
+
+resource "yandex_alb_backend_group" "test-backend-group" {
+  name                     = "http_backend_yandex_alb_backend_group"
+
+  http_backend {
+    name                   = "HTTPS"
+    weight                 = 1
+    port                   = 80
+    target_group_ids       = ["http_yandex_alb_target_group"]
+    load_balancing_config {
+      panic_threshold      = 90
+    }    
+    healthcheck {
+      timeout              = "10s"
+      interval             = "2s"
+      healthy_threshold    = 10
+      unhealthy_threshold  = 15 
+      http_healthcheck {
+        path               = "/"
+      }
+    }
+  }
+}
+
+resource "yandex_alb_http_router" "tf-router" {
+  name   = "HTTP-router"
+  labels = {
+    tf-label    = "tf-label-value"
+    empty-label = ""
+  }
+}
+
+resource "yandex_alb_virtual_host" "my-virtual-host" {
+  name           = "http-router"
+  http_router_id = "${yandex_alb_http_router.tf-router.id}"
+  route {
+    name = "http-router-1"
+    http_route {
+      http_route_action {
+        backend_group_id = "http_backend_yandex_alb_backend_group"
+        timeout          = "3s"
+      }
+    }
+  }
+}
+
+resource "yandex_alb_load_balancer" "test-balancer" {
+  name        = "http-balance-L7"
+  network_id  = "yandex_vpc_network.network1.id"
+
+  allocation_policy {
+    location {
+      zone_id   = "ru-central1-a"
+      subnet_id = "${yandex_vpc_subnet.subnet-2.id}" 
     }
   }
 
-  attached_target_group {
-    target_group_id = "${yandex_lb_target_group.foo.id}"
-
-    healthcheck {
-      name = "http"
-      http_options {
-        port = 80
-        path = "/"
+  listener {
+    name = "test"
+    endpoint {
+      address {
+        external_ipv4_address {
+        }
+      }
+      ports = [ 9000 ]
+    }
+    http {
+      handler {
+        http_router_id = "${yandex_alb_http_router.tf-router.id}"
       }
     }
   }
