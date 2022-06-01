@@ -317,3 +317,31 @@ resource "yandex_alb_load_balancer" "test-balancer" {
     }
   }
 }
+
+resource "yandex_vpc_network" "lab-net" {
+  name = "lab-network"
+}
+
+resource "yandex_vpc_default_security_group" "default-sg" {
+  description = "description for default security group"
+  network_id  = "${yandex_vpc_network.network1.id}"
+
+  labels = {
+    my-label = "my-label-value"
+  }
+
+  ingress {
+    protocol       = "TCP"
+    description    = "rule1 description"
+    v4_cidr_blocks = ["192.168.100.0/24", "192.168.101.0/24"]
+    port           = 22
+  }
+
+  egress {
+    protocol       = "ANY"
+    description    = "rule2 description"
+    v4_cidr_blocks = ["192.168.100.0/24", "192.168.101.0/24"]
+    from_port      = 22
+    to_port        = 22
+  }
+}
