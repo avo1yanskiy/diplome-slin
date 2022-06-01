@@ -194,6 +194,7 @@ resource "yandex_compute_instance" "virtual-machine-7" {
     user-data = "${file("./meta.txt")}"
   }
 }
+}
 
 resource "yandex_vpc_network" "network1" {
   name = "backnetwork"
