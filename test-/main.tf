@@ -283,7 +283,7 @@ resource "yandex_alb_backend_group" "test-backend-group" {
   }
 }
 
-resource "yandex_alb_http_router" "tf-router" {
+resource "yandex_alb_http_router" "tfrouter" {
   name   = "HTTProuter"
   labels = {
     tf-label    = "tf-label-value"
@@ -293,7 +293,7 @@ resource "yandex_alb_http_router" "tf-router" {
 
 resource "yandex_alb_virtual_host" "my-virtual-host" {
   name           = "http-router"
-  http_router_id = "${yandex_alb_http_router.tf-router.id}"
+  http_router_id = "${yandex_alb_http_router.tfrouter.id}"
   route {
     name = "http-router-1"
     http_route {
@@ -327,7 +327,7 @@ resource "yandex_alb_load_balancer" "test-balancer" {
     }
     http {
       handler {
-        http_router_id = "${yandex_alb_http_router.tf-router.id}"
+        http_router_id = "${yandex_alb_http_router.tfrouter.id}"
       }
     }
   }
