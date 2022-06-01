@@ -267,3 +267,39 @@ resource "yandex_alb_backend_group" "test-backend-group" {
     }
   }
 }
+
+resource "yandex_alb_http_router" "tf-router" {
+  name      = "my-http-router"
+  labels = {
+    tf-label    = "tf-label-value"
+    empty-label = ""s
+  }
+}
+
+resource "yandex_alb_load_balancer" "test-balancer" {
+  name        = "L-7"
+  network_id  = "yandex_vpc_network.network1.id"
+
+  allocation_policy {
+    location {
+      zone_id   = "ru-central1-a"
+      subnet_id = "yandex_vpc_subnet.subnet-1.id" 
+    }
+  }
+
+  listener {
+    name = "http"
+    endpoint {
+      address {
+        external_ipv4_address {
+        }
+      }
+      ports = [ 9000 ]
+    }
+    http {
+      handler {
+        http_router_id = "yandex_alb_http_router.tf-router.id"
+      }
+    }
+  }
+}
