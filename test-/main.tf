@@ -255,7 +255,7 @@ resource "yandex_alb_target_group" "foo" {
   }
 
   target {
-    subnet_id    = "yandex_vpc_subnet.subnet-1.id"
+    subnet_id    = "${yandex_vpc_subnet.subnet-1.id}"
     ip_address   = "192.168.101.10"
   }
 }
