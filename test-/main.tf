@@ -191,9 +191,9 @@ resource "yandex_compute_instance" "virtual-machine-7" {
   }
 }
 
-resource "yandex_vpc_security_group" "test-sg" {
-  name        = "Test security group"
-  description = "Description for security group"
+resource "yandex_vpc_security_group" "test" {
+  name        = "Test security"
+  description = "Description security group"
   network_id  = yandex_vpc_network.network1.id
 
   ingress {
