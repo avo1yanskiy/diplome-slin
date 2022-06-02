@@ -18,7 +18,15 @@
           - docker-ce-cli
           - containerd.io
           - docker-compose-plugin
+    - name: Docker-compose-2
+      become: yes
+      ansible.builtin.shell: sudo curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    - name: mode-x
+      become: yes
+      ansible.builtin.shell: chmod +x /usr/local/bin/docker-compose
     - name: Service Docker UP
+      become: yes
       service:
         name: docker
         state: started
+    
