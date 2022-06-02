@@ -1,0 +1,24 @@
+---
+- name: Check & Gathering Facts
+  hosts: prod
+  tasks:
+    - name: Install yum-utils
+      become: yes
+      yum:
+        name: yum-utils
+        state: latest
+    - name: add-repo
+      become: yes
+      ansible.builtin.shell: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+    - name: Docker Install
+      become: yes
+      yum:
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-compose-plugin
+    - name: Service Docker UP
+      service:
+        name: docker
+        state: started
