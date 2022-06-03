@@ -1,5 +1,5 @@
 ---
-- name: Check & Gathering Facts
+- name: Docker & Docker-compose
   hosts: prod
   tasks:
     - name: Install yum-utils
@@ -29,4 +29,34 @@
       service:
         name: docker
         state: started
-    
+  - name: Files kibana servers
+    hosts: kibana
+    tasks:
+      - name: create directory
+        become: yes
+        file:
+          path: /etc/dockers
+          state: directory
+      - name: Copy files docker-kibana.yml
+        become: yes
+        ansible.builtin.copy:
+          src: docker-kibana.yml
+          dest: /etc/dockers
+      - name: Copy files kibana.yml
+        become: yes
+        ansible.builtin.copy:
+          src: kibana.yml
+          dest: /etc/dockers
+  - name: Files elasticsearch servers
+    hosts: elasticsearch
+    tasks:
+      - name: create directory
+        become: yes
+        file:
+          path: /etc/dockers
+          state: directory
+      - name: Copy files elasticsearch-kibana.yml
+        become: yes
+        ansible.builtin.copy:
+          src: docker-elasticsearch.yml
+          dest: /etc/dockers
