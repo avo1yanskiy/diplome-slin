@@ -29,38 +29,48 @@
       service:
         name: docker
         state: started
-  - name: Files kibana servers
-    hosts: kibana
-    tasks:
-      - name: create directory dockers-kibana
-        become: yes
-        file:
-          path: /etc/dockers
-          state: directory
-      - name: Copy files docker-kibana.yml
-        become: yes
-        ansible.builtin.copy:
-          src: docker-kibana.yml
-          dest: /etc/dockers
-          mode: "u=rw,g=wx,o=rwx"
-          recurse: yes
-      - name: Copy files kibana.yml
-        become: yes
-        ansible.builtin.copy:
-          src: kibana.yml
-          dest: /etc/dockers
-  - name: Files elasticsearch servers
-    hosts: elasticsearch
-    tasks:
-      - name: create directory dockers-elasticsearch
-        become: yes
-        file:
-          path: /etc/dockers
-          state: directory
-          mode: "u=rw,g=wx,o=rwx"
-          recurse: yes
-      - name: Copy files elasticsearch-kibana.yml
-        become: yes
-        ansible.builtin.copy:
-          src: docker-elasticsearch.yml
-          dest: /etc/dockers
+- name: Files kibana servers
+  hosts: kibana
+  tasks:
+    - name: create directory dockers-kibana
+      become: yes
+      file:
+        path: /etc/dockers
+        state: directory
+    - name: Copy files docker-kibana.yml
+      become: yes
+      ansible.builtin.copy:
+        src: docker-kibana.yml
+        dest: /etc/dockers
+    - name: Copy files kibana.yml
+      become: yes
+      ansible.builtin.copy:
+        src: kibana.yml
+        dest: /etc/dockers
+- name: Files elasticsearch servers
+  hosts: elasticsearch
+  tasks:
+    - name: create directory dockers-elasticsearch
+      become: yes
+      file:
+        path: /etc/dockers
+        state: directory
+    - name: Copy files docker-elastic.yml
+      become: yes
+      ansible.builtin.copy:
+        src: docker-elastic.yml
+        dest: /etc/dockers
+- name: Docker-compose kibana
+  hosts: kibana
+  tasks: 
+    - name: docker-compose up kibana
+      become: yes
+      ansible.builtin.shell: /usr/local/bin/docker-compose -f /etc/dockers/docker-kibana.yml up -d
+
+- name: Docker-compose elasticsearch
+  hosts: elasticsearch
+  tasks: 
+    - name: docker-compose up elasticsearch
+      become: yes
+      ansible.builtin.shell: /usr/local/bin/docker-compose -f /etc/dockers/docker-elastic.yml up -d
+
