@@ -3,3 +3,4 @@ vars:
     ansible_connection: ssh   # подключение по ssh
     ansible_ssh_user: parallels     # пользователь
     ansible_ssh_private_key_file: ~/.ssh/id_rsa.pub # ключ откуда берет
+    ansible_ssh_common_args: ProxyCommand="ssh -W %h:%p parallels@bastion"
