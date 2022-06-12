@@ -158,7 +158,6 @@ resource "yandex_compute_instance" "virtual-machine-6" {
 
   network_interface {
     subnet_id = "${yandex_vpc_subnet.subnet-1.id}"
-    ip_address = "192.168.101.9"
   }
 
   metadata = {
@@ -220,6 +219,7 @@ resource "yandex_alb_target_group" "http-yandex" {
 
   target {
     subnet_id    = "${yandex_vpc_subnet.subnet-1.id}"
+    ip_address   = "192.168.101.10"
   }
 }
 
