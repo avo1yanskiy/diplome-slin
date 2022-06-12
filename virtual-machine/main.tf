@@ -311,7 +311,7 @@ resource "yandex_vpc_security_group" "test-sg" {
     protocol       = "ANY"
     description    = "Rule 2"
     v4_cidr_blocks = ["192.168.100.0/24", "192.168.101.0/24"]
-    from_port      = 8080
-    to_port        = 8090
+    from_port      = 22
+    to_port        = 80
   }
 }
