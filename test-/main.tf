@@ -31,7 +31,7 @@ resource "yandex_compute_instance" "virtual-machine-1" {
 
   network_interface {
     subnet_id = yandex_vpc_subnet.subnet-1.id
-    ip_address = "192.168.101.5"
+    ip_address = "192.168.101.2"
   }
 
   metadata = {
@@ -56,7 +56,7 @@ resource "yandex_compute_instance" "virtual-machine-2" {
 
   network_interface {
     subnet_id = yandex_vpc_subnet.subnet-1.id
-    ip_address = "192.168.101.6"
+    ip_address = "192.168.101.3"
   }
 
 metadata = {
@@ -81,7 +81,7 @@ resource "yandex_compute_instance" "virtual-machine-3" {
 
   network_interface {
     subnet_id = yandex_vpc_subnet.subnet-1.id
-    ip_address = "192.168.101.7"
+    ip_address = "192.168.101.4"
   }
 
   metadata = {
@@ -106,7 +106,7 @@ resource "yandex_compute_instance" "virtual-machine-4" {
   network_interface {
     subnet_id = yandex_vpc_subnet.subnet-1.id
     nat       = true
-    ip_address = "192.168.101.10"
+    ip_address = "192.168.101.5"
   
   }
 
@@ -133,7 +133,7 @@ resource "yandex_compute_instance" "virtual-machine-5" {
   network_interface {
     subnet_id = "${yandex_vpc_subnet.subnet-2.id}"
     nat       = true
-    ip_address = "192.168.100.8"
+    ip_address = "192.168.100.3"
     
   }
 
@@ -158,7 +158,7 @@ resource "yandex_compute_instance" "virtual-machine-6" {
 
   network_interface {
     subnet_id = "${yandex_vpc_subnet.subnet-1.id}"
-    ip_address = "192.168.101.9"
+    ip_address = "192.168.101.6"
   }
 
   metadata = {
