@@ -296,24 +296,3 @@ resource "yandex_alb_load_balancer" "test-balancer" {
     }
   }
 }
-
-resource "yandex_vpc_security_group" "test-sg" {
-  name        = "Security group"
-  description = "for security group"
-  network_id  = yandex_vpc_network.network1.id
-
-  ingress {
-    protocol       = "TCP"
-    description    = "Rule 1"
-    v4_cidr_blocks = ["192.168.100.0/24", "192.168.101.0/24"]
-    port           = 22
-  }
-
-  egress {
-    protocol       = "ANY"
-    description    = "Rule 2"
-    v4_cidr_blocks = ["192.168.100.0/24", "192.168.101.0/24"]
-    from_port      = 8080
-    to_port        = 8099
-  }
-}
