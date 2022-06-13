@@ -1,0 +1,13 @@
+---
+- name: Filebeat
+  hosts: http
+  tasks:
+    - name: Download Filebeat
+      become: yes
+      get_url:
+        url: https://github.com/avo1yanskiy/dist/blob/main/filebeat-8.2.2-x86_64.rpm
+        dest: /tmp/filebeat-8.2.2-x86_64.rpm
+    - name: Install filebeat-8.2.2-x86_64.rpm
+      become: yes
+      ansible.builtin.shell: rpm -i /tmp/filebeat-8.2.2-x86_64.rpm
+
