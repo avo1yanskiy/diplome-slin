@@ -43,3 +43,15 @@ srv5:
   hosts:
     elasticsearch:
       ansible_host: 192.168.101.3
+docker:
+  hosts:
+    kibana:
+      ansible_host: 192.168.101.7
+    elasticsearch:
+      ansible_host: 192.168.101.3
+http:
+  hosts:
+    http-1:
+      ansible_host: 192.168.101.6
+    http-2:
+      ansible_host: 192.168.100.3
