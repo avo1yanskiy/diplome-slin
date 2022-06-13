@@ -2,12 +2,31 @@
 - name: Filebeat
   hosts: http
   tasks:
-    - name: Download Filebeat
+    - name: Install GIT
       become: yes
-      get_url:
-        url: https://github.com/avo1yanskiy/dist/blob/main/filebeat-8.2.2-x86_64.rpm
-        dest: /tmp/filebeat-8.2.2-x86_64.rpm
-    - name: Install filebeat-8.2.2-x86_64.rpm
+      yum:
+        name: git
+        state: present
+
+    - name: Clone Repo
       become: yes
-      ansible.builtin.shell: rpm -i /tmp/filebeat-8.2.2-x86_64.rpm
+      ansible.builtin.git:
+        repo: https://github.com/avo1yanskiy/dist.git
+        dest: /tmp/dist
+    - name: Install PRM
+      become: yes
+      yum:
+        name: /tmp/dist/filebeat-8.2.2-x86_64.rpm
+        state: present
+    - name: Copy nginx.yml
+      become: yes
+      ansible.builtin.copy:
+       src: nginx.yml
+       dest: /etc/filebeat/modules.d/
+    - name: Service FileBeat
+      become: yes
+      service:
+        name: filebeat
+        state: started
+    
 
