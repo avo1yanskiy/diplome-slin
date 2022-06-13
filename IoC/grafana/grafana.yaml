@@ -1,6 +1,6 @@
 ---
 - name: Check & Gathering Facts
-  hosts: prod
+  hosts: srv2
   tasks:
     - name: Copy-grafana.repo
       become: yes

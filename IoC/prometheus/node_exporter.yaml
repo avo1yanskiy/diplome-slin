@@ -1,7 +1,7 @@
 ###   Скачивает и установливает Node_Exporter
 ---
 - name: Check & Gathering Facts
-  hosts: client
+  hosts: http
   tasks:
     - name: Create Users Node_exporter
       become: yes
@@ -37,7 +37,7 @@
        dest: /etc/systemd/system/
 
 - name: Start Service
-  hosts: client
+  hosts: http
   tasks:
     - name: Restart service
       become: yes

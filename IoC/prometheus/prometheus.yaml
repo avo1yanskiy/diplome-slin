@@ -1,7 +1,7 @@
 ### Prinetheus
 ---
 - name: Check & Gathering Facts
-  hosts: prod
+  hosts: srv3
   tasks:
     - name: Download Promethtus
       get_url:

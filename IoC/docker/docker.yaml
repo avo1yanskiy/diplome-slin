@@ -1,6 +1,6 @@
 ---
 - name: Docker & Docker-compose
-  hosts: prod
+  hosts: docker
   tasks:
     - name: Install yum-utils
       become: yes

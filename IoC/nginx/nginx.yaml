@@ -1,6 +1,6 @@
 ---
 - name: Enable EPEL Repository
-  hosts: prod
+  hosts: http
   tasks:
   - name: Install nginx
     become: yes

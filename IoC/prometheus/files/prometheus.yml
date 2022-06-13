@@ -9,8 +9,8 @@ scrape_configs:
   - job_name: 'node_exporter'
     scrape_interval: 5s
     static_configs:
-      - targets: ['192.168.101.10:9101'] # менять localhost  на нужный IP и порт
+      - targets: ['192.168.100.3:9101'] # менять localhost  на нужный IP и порт
   - job_name: 'node_exporter'
     scrape_interval: 5s
     static_configs:
-      - targets: ['192.168.100.8:9102'] # менять localhost  на нужный IP и порт
+      - targets: ['192.168.101.6:9102'] # менять localhost  на нужный IP и порт
