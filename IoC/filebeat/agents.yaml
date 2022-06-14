@@ -31,7 +31,7 @@
     - name: Download nginxlog-exporter
       become: yes
       get_url:
-        url: https://github.com/martin-helmich/prometheus-nginxlog-exporter/releases/download/v1.9.2/prometheus-nginxlog-exporter_1.9.2_linux_a>
+        url: https://github.com/martin-helmich/prometheus-nginxlog-exporter/releases/download/v1.9.2/prometheus-nginxlog-exporter_1.9.2_linux_amd64.rpm
         dest: /tmp/prometheus-nginxlog-exporter_1.9.2_linux_amd64.rpm
     - name: Install
       become: yes
