@@ -63,3 +63,7 @@ rate(process_cpu_seconds_total{job="SERVER"}[15m])
 rate(process_cpu_seconds_total{job="SERVER"}[5m])
 sum by (mode, instance) (rate(process_cpu_seconds_total{job="SERVER"}[1m]))
 
+
+idle
+
+100 - (avg by (instance) (rate(node_cpu_seconds_total{job="node_exporter-1",mode="idle"}[1m])) * 100)
