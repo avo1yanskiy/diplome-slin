@@ -43,3 +43,23 @@ provider_installation {
   }
 }
 ```
+
+
+UP/DOWN
+
+up{instance="192.168.100.3:9100", job="node_exporter-1"}
+up{instance="192.168.101.6:9100", job="node_exporter-2"}
+
+
+network 
+
+node_network_receive_bytes_total{device="eth0", instance="192.168.100.3:9100", job="node_exporter-1"}
+
+
+CPU
+
+rate(process_cpu_seconds_total{job="SERVER"}[15m])
+
+rate(process_cpu_seconds_total{job="SERVER"}[5m])
+sum by (mode, instance) (rate(process_cpu_seconds_total{job="SERVER"}[1m]))
+
