@@ -14,3 +14,11 @@ scrape_configs:
     scrape_interval: 5s
     static_configs:
       - targets: ['192.168.101.6:9100'] # менять localhost  на нужный IP и порт
+  - job_name: 'web-1'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['192.168.100.3:4040'] # менять localhost  на нужный IP и порт
+  - job_name: 'web-2'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['192.168.101.6:4040'] # менять localhost  на нужный IP и порт
