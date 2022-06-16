@@ -1,0 +1,57 @@
+---
+all:
+  hosts:
+    #server-01:
+    #  ansible_host: 51.250.29.28
+    #server-02:
+    #  ansible_host: 178.154.255.6
+prod:
+  hosts:
+    http-1:
+      ansible_host: 192.168.101.6
+    http-2:
+      ansible_host: 192.168.100.3
+    grafana:
+      ansible_host: 192.168.101.4
+    prometheus:
+      ansible_host: 192.168.101.5
+    kibana:
+      ansible_host: 192.168.101.7
+    elasticsearch:
+      ansible_host: 192.168.101.3
+srv:
+  hosts:
+    http-1:
+      ansible_host: 192.168.101.6
+srv1:
+  hosts:
+    http-2:
+      ansible_host: 192.168.100.3
+srv2:
+  hosts:
+    grafana:
+      ansible_host: 192.168.101.4
+srv3:
+  hosts:
+    prometheus:
+      ansible_host: 192.168.101.5
+srv4:
+  hosts:
+    kibana:
+      ansible_host: 192.168.101.7
+srv5:
+  hosts:
+    elasticsearch:
+      ansible_host: 192.168.101.3
+docker:
+  hosts:
+    kibana:
+      ansible_host: 192.168.101.7
+    elasticsearch:
+      ansible_host: 192.168.101.3
+http:
+  hosts:
+    http-1:
+      ansible_host: 192.168.101.6
+    http-2:
+      ansible_host: 192.168.100.3
