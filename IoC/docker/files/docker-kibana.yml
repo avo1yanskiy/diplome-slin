@@ -1,7 +1,7 @@
 version: '3'
 services:
   kibana:
-    image: kibana:8.2.3
+    image: kibana:7.17.4
     volumes:
       - ./kibana.yml:/usr/share/kibana/config/kibana.yml
     ports:

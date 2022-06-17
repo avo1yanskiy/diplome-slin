@@ -1,7 +1,7 @@
 version: '3'
 services:
   elasticsearch:
-    image: elasticsearch:8.2.3
+    image: elasticsearch:7.17.4
     ports:
       - 9200:9200
     environment:
