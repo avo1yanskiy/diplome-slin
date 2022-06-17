@@ -1,6 +1,9 @@
 output.elasticsearch:
   hosts: ["192.168.101.3:9200"]
+  username: "elastic"  
+  password: "password"
 setup.kibana:
   host: "192.168.101.7:5601"
   username: "elastic"  
   password: "password"
+filebeat.config.modules.path: ${path.config}/modules.d/*.yml
