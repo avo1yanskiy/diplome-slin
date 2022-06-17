@@ -16,7 +16,7 @@
     - name: Install PRM
       become: yes
       yum:
-        name: /tmp/dist/filebeat-8.2.2-x86_64.rpm
+        name: /tmp/dist/filebeat-7.14.1-x86_64.rpm
         state: present
     - name: Configure filebeat
       become: true
