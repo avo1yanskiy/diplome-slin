@@ -18,16 +18,24 @@
       yum:
         name: /tmp/dist/filebeat-8.2.2-x86_64.rpm
         state: present
-    - name: Copy nginx.yml
-      become: yes
-      ansible.builtin.copy:
-       src: nginx.yml
-       dest: /etc/filebeat/modules.d/
+    - name: Configure filebeat
+      become: true
+      template:
+        src: filebeat.yml.j2
+        dest: /etc/filebeat/filebeat.yml
     - name: Service FileBeat
       become: yes
       service:
         name: filebeat
         state: started
+    - name: Set filebeat systemwork
+      become: true
+      command:
+        cmd: filebeat modules enable system
+    - name: Set filebeat nginx
+      become: true
+      command:
+        cmd: filebeat modules enable nginx
     - name: Download nginxlog-exporter
       become: yes
       get_url:
