@@ -28,6 +28,14 @@
       service:
         name: filebeat
         state: started
+    - name: Set filebeat systemwork
+      become: true
+      command:
+        cmd: filebeat modules enable system
+    - name: Set filebeat nginx
+      become: true
+      command:
+        cmd: filebeat modules enable nginx
     - name: Download nginxlog-exporter
       become: yes
       get_url:
