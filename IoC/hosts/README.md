@@ -1,9 +1,14 @@
-Playbook Prometheus-node_exporter & grafana
+Playbook Конфигурация хостов(серверов)
 =========
 
 Роль для установки prometheus на хостах с ОС:CentOS, RHEL.
 
-Путь запуска, сначала запускаем Playbook site.yaml, после node_exporter.yaml за ним grafana.yaml (нужно чутка доработать в роль)
+Путь запуска, сначала запускаем Playbook hosts.yaml
+
+* Добавление репозитория 
+* Обновление системы
+* Переименование хостов
+* Перезагрузка
 
 Requirements
 ------------
@@ -15,13 +20,10 @@ Playbook Variables
 
 | Variable name | Default | Description |
 |-----------------------|----------|-------------------------|
-| prometheus-2.30.3 | prometheus-2.30.3 | установка prometheus-2.30.3 |
-| node_exporter | node_exporter | установка node_exporter |
-| grafana | grafana | установка grafana |
-| alertnamager | alertnamager | установка alertnamager |
-
-* после установки alertnamager может не запуститься ( systemctl daemon-reload)
-
+| переименование хостов| переименование хостов | переименование хостов |
+| обновление системы | обновление системы | обновление системы|
+| добавление репозитория | добавление репозитория | добавление репозитория |
+| перезагрузка хостов | перезагрузка хостов | перезагрузка хостов |
 
 
 Example Playbook

@@ -1,10 +1,12 @@
-Playbook Prometheus-node_exporter & grafana
+Playbook Filebeat & nginxlog-exporter
 =========
 
 Роль для установки prometheus на хостах с ОС:CentOS, RHEL.
 
-Путь запуска, сначала запускаем Playbook site.yaml, после node_exporter.yaml за ним grafana.yaml (нужно чутка доработать в роль)
+Путь запуска, сначала запускаем playbook agents.yaml
 
+* Установка Filebeat ( с нужными конфигами и настройкой)
+* Установка nginxlog-exporter (с нужными конфигами)
 Requirements
 ------------
 
@@ -15,12 +17,8 @@ Playbook Variables
 
 | Variable name | Default | Description |
 |-----------------------|----------|-------------------------|
-| prometheus-2.30.3 | prometheus-2.30.3 | установка prometheus-2.30.3 |
-| node_exporter | node_exporter | установка node_exporter |
-| grafana | grafana | установка grafana |
-| alertnamager | alertnamager | установка alertnamager |
-
-* после установки alertnamager может не запуститься ( systemctl daemon-reload)
+| Filebeat | Filebeat | установка Filebeat |
+| nginxlog-exporter 1.9.2 | nginxlog-exporter 1.9.2 | установка nginxlog-exporter 1.9.2 |
 
 
 
