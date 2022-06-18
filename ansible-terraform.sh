@@ -9,8 +9,7 @@ sleep 5
 
 sudo apt update
 
-sudo apt -y install vim
-sudo apt -y install curl
+sudo apt -y install vim curl
 sudo apt -y install wget
 sudo apt -y install zip
 sudo apt -y install git
@@ -27,13 +26,7 @@ sudo unzip dist/terraform_1.2.1_linux_amd64.zip
 
 cp terraform /bin
 
-
-
-
-nano ~/.terraformrc
-
-```
-provider_installation {
+nano echo "provider_installation {
   network_mirror {
     url = "https://terraform-mirror.yandexcloud.net/"
     include = ["registry.terraform.io/*/*"]
@@ -41,5 +34,4 @@ provider_installation {
   direct {
     exclude = ["registry.terraform.io/*/*"]
   }
-}
-```
+}" > ~/.terraformrc
