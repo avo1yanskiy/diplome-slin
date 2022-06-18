@@ -21,7 +21,7 @@ git clone https://github.com/avo1yanskiy/diplome-slin.git
 
 sudo unzip dist/terraform_1.2.1_linux_amd64.zip
 
-sudo cp terraform /bin
+sudo cp terraform /usr/local/bin
 
 sudo nano echo "provider_installation {
   network_mirror {
