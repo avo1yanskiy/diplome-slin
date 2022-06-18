@@ -210,110 +210,11 @@ resource "yandex_vpc_subnet" "subnet-1" {
   v4_cidr_blocks = ["192.168.101.0/24"]
 }
 
-resource "yandex_alb_target_group" "http-yandex" {
-  name           = "http-yandex"
+resource "yandex_compute_snapshot" "snapshot-1" {
 
-  target {
-    subnet_id    = "${yandex_vpc_subnet.subnet-2.id}"
-    ip_address   = "192.168.100.8"
-  }
-
-  target {
-    subnet_id    = "${yandex_vpc_subnet.subnet-1.id}"
-    ip_address   = "192.168.101.10"
-  }
+  name           = "disk-snapshot"
+  source_disk_id = ["${yandex_compute_snapshot.snapshot-1.id}"]
 }
 
-resource "yandex_alb_backend_group" "test-backend-group" {
-  name                     = "test-backend"
 
-  http_backend {
-    name                   = "backend1"
-    weight                 = 1
-    port                   = 80
-    target_group_ids       = ["${yandex_alb_target_group.http-yandex.id}"]
-    load_balancing_config {
-      panic_threshold      = 90
-    }    
-    healthcheck {
-      timeout              = "10s"
-      interval             = "2s"
-      healthy_threshold    = 10
-      unhealthy_threshold  = 15 
-      http_healthcheck {
-        path               = "/"
-      }
-    }
-  }
-}
 
-resource "yandex_alb_http_router" "tf-router" {
-  name      = "my-http-router"
-  labels = {
-    tf-label    = "tf-label-value"
-    empty-label = ""
-  }
-}
-
-resource "yandex_alb_virtual_host" "my-virtual-host" {
-  name      = "my-virtual-host"
-  http_router_id = yandex_alb_http_router.tf-router.id
-  route {
-    name = "my-route"
-    http_route {
-      http_route_action {
-        backend_group_id = yandex_alb_backend_group.test-backend-group.id
-        timeout = "3s"
-      }
-    }
-  }
-}
-
-resource "yandex_alb_load_balancer" "test-balancer" {
-  name        = "my-load-balancer"
-  network_id  = yandex_vpc_network.network1.id
-
-  allocation_policy {
-    location {
-      zone_id   = "ru-central1-a"
-      subnet_id = yandex_vpc_subnet.subnet-1.id
-    }
-  }
-
-  listener {
-    name = "http"
-    endpoint {
-      address {
-        external_ipv4_address {
-        }
-      }
-      ports = [ 80 ]
-    }
-    http {
-      handler {
-        http_router_id = yandex_alb_http_router.tf-router.id
-      }
-    }
-  }
-}
-
-resource "yandex_vpc_security_group" "test-sg" {
-  name        = "Security group"
-  description = "for security group"
-  network_id  = yandex_vpc_network.network1.id
-
-  ingress {
-    protocol       = "TCP"
-    description    = "Rule 1"
-    v4_cidr_blocks = ["192.168.100.0/24", "192.168.101.0/24"]
-    port           = 22
-  }
-
-  egress {
-    protocol       = "ANY"
-    description    = "Rule 2"
-    v4_cidr_blocks = ["192.168.100.0/24", "192.168.101.0/24"]
-    from_port      = 8080
-    to_port        = 8099
-  }
-}
