@@ -9,10 +9,7 @@ sleep 5
 
 sudo apt update
 
-sudo apt -y install vim curl
-sudo apt -y install wget
-sudo apt -y install zip
-sudo apt -y install git
+sudo apt -y install vim curl wget zip git
 
 sudo add-apt-repository ppa:ansible/ansible-2.10
 sudo apt -y install ansible
@@ -26,7 +23,7 @@ sudo unzip dist/terraform_1.2.1_linux_amd64.zip
 
 sudo cp terraform /bin
 
-nano echo "provider_installation {
+sudo nano echo "provider_installation {
   network_mirror {
     url = "https://terraform-mirror.yandexcloud.net/"
     include = ["registry.terraform.io/*/*"]
