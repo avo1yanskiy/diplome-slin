@@ -213,7 +213,7 @@ resource "yandex_vpc_subnet" "subnet-1" {
 resource "yandex_compute_snapshot" "snapshot-1" {
 
   name           = "disk-snapshot"
-  source_disk_id = ["${yandex_compute_snapshot.snapshot-1.id}"]
+  source_disk_id = "yandex_compute_snapshot_virtual-machine-6_id"
 }
 
 
