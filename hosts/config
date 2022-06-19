@@ -1,46 +1,46 @@
 # создать такой конфиг
 # ~/.ssh/config
 
-Host 51.250.82.243
-  Hostname bastion
+Host 51.250.71.36
+  Hostname 51.250.71.36
   IdentityFile ~/.ssh/id_rsa
   StrictHostKeyChecking no
 
 Host 192.168.101.3
-  Hostname elasticsearch
+  Hostname 192.168.101.3
   IdentityFile ~/.ssh/id_rsa
   StrictHostKeyChecking no
-  ProxyCommand ssh 51.250.82.243 -W %h:%p
+  ProxyCommand ssh 51.250.71.36 -W %h:%p
 
 Host 192.168.101.4
-  Hostname grafana
+  Hostname 192.168.101.4
   IdentityFile ~/.ssh/id_rsa
   StrictHostKeyChecking no
-  ProxyCommand ssh 51.250.82.243 -W %h:%p
+  ProxyCommand ssh 51.250.71.36 -W %h:%p
 
 Host 192.168.101.5
-  Hostname prometheus
+  Hostname 192.168.101.5
   IdentityFile ~/.ssh/id_rsa
   StrictHostKeyChecking no
-  ProxyCommand ssh 51.250.82.243 -W %h:%p
+  ProxyCommand ssh 51.250.71.36 -W %h:%p
 
 Host 192.168.101.6
-  Hostname http-1
+  Hostname 192.168.101.6
   IdentityFile ~/.ssh/id_rsa
   StrictHostKeyChecking no
-  ProxyCommand ssh 51.250.82.243 -W %h:%p
+  ProxyCommand ssh 51.250.71.36 -W %h:%p
 
 Host 192.168.101.7
-  Hostname kibana
+  Hostname 192.168.101.7
   IdentityFile ~/.ssh/id_rsa
   StrictHostKeyChecking no
-  ProxyCommand ssh 51.250.82.243 -W %h:%p
+  ProxyCommand ssh 51.250.71.36 -W %h:%p
 
 Host 192.168.100.3
-  Hostname http-2
+  Hostname 192.168.100.3
   IdentityFile ~/.ssh/id_rsa
   StrictHostKeyChecking no
-  ProxyCommand ssh 51.250.82.243 -W %h:%p
+  ProxyCommand ssh 51.250.71.36 -W %h:%p
 
   
 

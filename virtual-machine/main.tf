@@ -312,12 +312,4 @@ resource "yandex_vpc_security_group" "test-sg" {
     v4_cidr_blocks = ["192.168.100.0/24", "192.168.101.0/24"]
     port           = 22
   }
-
-  egress {
-    protocol       = "ANY"
-    description    = "Rule 2"
-    v4_cidr_blocks = ["192.168.100.0/24", "192.168.101.0/24"]
-    from_port      = 8080
-    to_port        = 8099
-  }
 }
