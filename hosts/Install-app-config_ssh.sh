@@ -23,4 +23,4 @@ echo 'тут должна быть рапаковка Терраформа'
 
 echo 'Копирования config для подключения через хост бастион к виртуальным машинам'
 
-sudo cp ~/diplome-slin/host/config ~/.ssh/config
+sudo cp /home/parallels/diplome-slin ~/.ssh/config
