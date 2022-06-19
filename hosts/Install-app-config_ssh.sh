@@ -17,10 +17,3 @@ echo 'Подключение репозиториев'
 
 git clone https://github.com/avo1yanskiy/dist.git
 git clone https://github.com/avo1yanskiy/diplome-slin.git
-
-echo 'тут должна быть рапаковка Терраформа'
-
-
-echo 'Копирования config для подключения через хост бастион к виртуальным машинам'
-
-sudo cp /home/parallels/diplome-slin ~/.ssh/config
