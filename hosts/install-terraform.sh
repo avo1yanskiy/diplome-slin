@@ -1,6 +1,6 @@
-## Для убунты.
+## Установка для deb
 
-## не забудь сделать "chmod +x ansible-yandex.sh"
+## не забудь сделать "chmod +x install-terraform"
 
 #!/bin/bash
 echo 'Привет, это установка ansible & terraform!'

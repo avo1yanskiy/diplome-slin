@@ -1,3 +1,4 @@
+## не забудь сделать "chmod +x play-ansible-playbook.sh"
 #!/bin/bash
 echo 'Установка Playbooks дипломной работы!'
 
