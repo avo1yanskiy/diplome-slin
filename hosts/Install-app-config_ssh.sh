@@ -2,7 +2,7 @@
 ## Установка для deb
 #!/bin/bash
 
-echo 'Привет, это установка ansible & добавление config файла для доступа к хостам через БАСТИОН!!'
+echo 'Привет, это установка ansible &  terraform & добавление config файла для доступа к хостам через БАСТИОН!!'
 
 sleep 5
 
@@ -13,9 +13,14 @@ sudo apt -y install vim curl wget zip git
 sudo add-apt-repository ppa:ansible/ansible-2.10
 sudo apt -y install ansible
 
-echo ''
+echo 'Подключение репозиториев'
 
 git clone https://github.com/avo1yanskiy/dist.git
 git clone https://github.com/avo1yanskiy/diplome-slin.git
+
+echo 'тут должна быть рапаковка Терраформа'
+
+
+echo 'Копирования config для подключения через хост бастион к виртуальным машинам'
 
 sudo cp ~/diplome-slin/host/config ~/.ssh/config
