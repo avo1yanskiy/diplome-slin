@@ -5,7 +5,7 @@ users:
     shell: /bin/bash
     sudo: ['ALL=(ALL) NOPASSWD:ALL']
     ssh-authorized-keys:
-      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC3ZA/8/KMP3cREy6Lwbf2K2Z1Vm/wGP9Z/4IUp6/c56Vj9ZRtp+Fdtr+2I6+PBv1YnVReii45fmBbYBHIFGYTPQeCSdjMSzCd70u925CePM3gQcVcrNG1gR4Se1KJzpuHWltQR5NadMRNFhqEqTTx2KZYhfvifMUgpp96oP8hPkvRHFkzzk0rw5GDikFlkmv0uCNzHffu8KqJzHPmv85pD4NhkCUnkuPSAHvaEizSc+2INUAfd7DkWkle1nP+7BhCsPrcteVKzR4f+av+GHD3xiAJMYNXd25tdrPzg6mAy8lW1x+VTgYdf/DPi0+4oMJ9kZwaKqBOR7OphnV9g56HSArCjrEASj156RMHun6VU80RGHghozTRIXXq3PHhXFanPLBzRaTfJKw1pXsxm5GRwrEPI/8dYs8MN6VAmwAfTiIcbjQCO5QurIKjHi2IYSYoUkjzHvNRA5JQ+pd1RJ0FR1Dp22Ao/djvlc4aXMhxZyxKdeYU1H/Qjp+3dpzGnD8k= parallels@kali-linux-2021-3
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDB7oPwzqOah8/vE7d+BLLDcDC+0H+bTasU0LXdL89zQsoxPr8Kxxvr7VX/ZjN9Se9ZrU7tikYUQEACCrvt/xnSbTFFOZHLbDQrv1K3ZnIpCfZU3uLC+SyOtMWVzQQJwEw8a0l+l17e+90+2d57V7ujwl/MUuJoQPawZ41fygjm8xQ6/QFxXhCkec+67Usxbugi82vD1LK1z7NvT1mBYW7zG9cAp88JfnW7178UXnxP8NNfkbt+xGCU93mnbrluKsP93x/BLfzkLyFODdUxQct/1184+wWHVmuPCtUsxkfZoNVNpn6WRiZ/Pyds48fWj8tntOfV+6I8aJddOOyGWVBDMl28cdpr/MaHDr1N7NHGdQzJMSlLsgDcM1lq6wy3WfNaEjnuXcWpi8c2ewfPPusVTIcIUJww4dea1CiikAmqQLpuxTuPHu/az3x51PwoBEd9NQUzJZITB1HGaqyLen3S5G5zFbgFIfgTQZybMFbrWIa/NOovZSM1vfPV5+tFj2k= parallels@kali-linux-2021-3
 
 #      - ssh-rsa AAAAB3Nza......OjbSMRX user@example.com
 #      - ssh-rsa AAAAB3Nza......Pu00jRN user@desktop
